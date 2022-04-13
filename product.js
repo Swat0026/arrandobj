@@ -123,6 +123,10 @@ $(document).on("click" , ".rem", function(){
     display1();
    
 })
+$("#empty").on('click',function(){
+    cart=[];
+    display1();
+})
 
 
 
