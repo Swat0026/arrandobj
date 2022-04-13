@@ -23,7 +23,7 @@ display =()=>{
 }; display();
 
 
-$(document).on("click",".add-to-cart", function(){
+    $(document).on("click",".add-to-cart", function(){
     console.log("hi")
     var id=this.id
     console.log(id);
@@ -90,22 +90,46 @@ display1=()=>{
         <td>${element.price}</td>
         <td><input type="number" class="quantinp" id="${element.id}" value="${element.quantity}"></td>
         <td id="sum1">${sum}<td>
-        <td class="rem" id="${element.quantity}" >REMOVE</td>
+        <td class="rem" id="${element.id}" >REMOVE</td>
         </tr>`
     }); 
        $("#tab1").append(html+itemslist+"</table>")
        var count3 = $(".sum1").length;
-       var sum2 = 0;
+       var sum = 0;
     for(var i=0;i<count3;i++){
     
         var x = $(".sum1")[i].innerHTML
+        console.log(x)
         
-        sum2 += Number(x)
+        sum += Number(x)
     }
    $("#total").empty();
-   $("#total").append(sum2)
+   $("#total").append(sum)
 }
 console.log(cart)
+
+$(document).on("click" , ".rem", function(){
+    var idi= this.id;
+    console.log(idi);
+    cart.forEach((element,index) => {
+        console.log(index)
+        console.log(element.id);
+        console.log(idi);
+        if(element.id == idi){
+            console.log("dgdgdfhbgdfhtjtgfjfgjfgjgfjtgjtgfjgfj")
+            cart.splice(index,1)
+        }
+    });
+    display1();
+   
+})
+
+
+
+
+
+
+
 
 
 
