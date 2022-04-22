@@ -31,10 +31,10 @@ $(document).on("click", ".add-to-cart", function () {
     if (element.id == id) {
       console.log("dbg");
       var obj = {
-        id: element.id,
-        name: element.name,
-        price: element.price,
-        quantity: 1,
+        "id": element.id,
+        "name": element.name,
+        "price": element.price,
+        "quantity": 1,
       };
       var count = cart.length;
       var count1 = 0;
@@ -44,7 +44,7 @@ $(document).on("click", ".add-to-cart", function () {
           if (cart[i].id == id) {
             cart[i].quantity += 1;
             count1 = 1;
-            break;
+            
           }
         }
       }
@@ -68,7 +68,7 @@ var html = `<table id="tab">
 <th>ACTION</th>
 </tr>`;
 
-function display1() {
+display1=()=>{
   $("#tab1").empty();
   var itemslist = "";
   cart.forEach((element) => {
@@ -85,16 +85,29 @@ function display1() {
   $("#tab1").append(html + itemslist + "</table>");
   var count3 = $(".sum1").length;
   var sum = 0;
-  for (var i = 0; i < count3; i++) {
-    var x = $(".sum1")[i].innerHTML;
-    console.log(x);
-
-    sum += Number(x);
-  }
+  for (let i = 0; i < count3; i++) {
+   var x=$(".sum1")[i].innerHTML;
+sum += Number(x);
+  };
   $("#total").empty();
   $("#total").append(sum);
+
 }
+ 
+
 console.log(cart);
+$(document).on("change" , ".quantinp" , function(){
+  var id2= this.id;
+  var itemid = id2.split("_"[1]);
+  var item_quantity = this.value;
+  cart.forEach(element => {
+      if(element.id == itemid){
+          element.quantity = item_quantity;
+      }
+
+  });
+  display1(); 
+});
 
 $(document).on("click", ".rem", function () {
   var idi = this.id;
@@ -115,3 +128,5 @@ $("#empty").on("click", function () {
   cart = [];
   display1();
 });
+
+
